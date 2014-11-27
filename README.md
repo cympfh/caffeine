@@ -61,11 +61,16 @@ for x in lst
 ```
 
 ```clojure
-(for (in x let)
+(for (in x lst)
   something)
 ```
 
 ## for-of
+
+```coffee
+for a of obj
+  something
+```
 
 ```clojure
 (for (of a obj)
