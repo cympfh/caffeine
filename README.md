@@ -77,6 +77,18 @@ for a of obj
   something)
 ```
 
+## range list
+
+CoffeeScript has two range list notations,
+`[i .. j]` and `[i ... j]`.
+
+For these, we use
+
+```clojure
+(.. i j)
+(... i j)
+```
+
 ## type-annotation
 
 In the future, i will implement type-inference.

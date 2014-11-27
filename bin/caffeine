@@ -1,2 +1,40 @@
 #!/usr/bin/env coffee
 
+usage = ->
+  console.warn "Caffeine ver 0.0.0"
+  console.warn "---"
+  console.warn "usage:"
+  console.warn "  run script: caffeine main.caf"
+  console.warn "  compile: caffeine -c main.caf"
+  console.warn "  compile: caffeine -c main.caf -o main.coffee"
+  process.exit 0
+
+# TODO: arg parse
+# compile (-c)
+# output (-o [])
+
+fn = process.argv[2]
+output = '/tmp/caffeine_out.coffee'
+
+if not fn
+  do usage
+
+fs = require 'fs'
+{exec} = require 'child_process'
+parse = require '../lib/parse'
+write = require '../lib/write'
+
+buf = fs.readFileSync fn, 'utf8'
+ast = parse buf
+
+if fs.existsSync output
+  fs.unlink output
+write ast, (fragment_code) ->
+  fs.appendFileSync output, fragment_code
+
+exec "/usr/bin/env coffee #{output}", (err, _1, _2) ->
+  throw err if err
+  console.log _1
+  console.warn _2
+
+# vim: ft=coffee:

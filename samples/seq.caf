@@ -1,0 +1,5 @@
+(= (print x)
+  (console.log x))
+(= ls (.. 0 10))
+
+(ls.map print)
