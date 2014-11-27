@@ -80,9 +80,69 @@ for a of obj
 ## type-annotation
 
 In the future, i will implement type-inference.
+
 For types of *CoffeeScript*,
 I should reffer to
 [the types in the v8 engine](http://izs.me/v8-docs/classv8_1_1Primitive.html)
+
+---
+
+In *Caffeine*,
+primitive types are
+
+- Boolean
+- Number
+- String
+
+and following object types
+
+- Array (list type in *Haskell*)
+    - `(Array a)` for Array of `a` (`a` is a type)
+- Date (hmm...)
+- Function (from `a` to `b`)
+    - `(-> a b)`
+- RegExp
+
+What the types of the other objects (= general JSONs)
+
+- Object (previous object types are `Object`)
+
+### forall
+
+The name of types are always begin with a capital letter.
+The name which begins small letter
+is type variable.
+
+For example
+
+```clojure
+(:: (-> a a))
+```
+
+is read that
+this is a function which
+takes a value with any type
+and return a value which type is same with the argument's.
+
+
+### from of Function
+
+We thinks that
+a argument of Function is a tuple.
+
+```clojure
+(:: f0 (-> () Number))
+(= f0 (fn () 1))
+
+(:: f1 (-> (Number) Number))
+(:: f1 (-> Number Number)) ; for syntax-sugar (almost functional programmers should prefer this)
+(= f1 (fn (x) 1))
+
+(:: f2 (-> (Number Number) Number)) ; the `(Number Number)` is 2-ary tuple (or a list in lisp)
+(= f2 (fn (x y) 1))
+```
+
+---
 
 In haskell,
 
@@ -93,16 +153,6 @@ n = 0
 f :: Int -> Int
 f x = x * x
 ```
-
-In *Caffeine*, primitive types are
-
-- Boolean
-- Number
-- String
-- Value (anything!)
-
-and
-we must think of a list of something and a function from `a` to `b`
 
 ```clojure
 (:: n Number)
