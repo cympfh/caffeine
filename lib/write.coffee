@@ -101,6 +101,26 @@ write = (ast, print, idt = 0) ->
             print '/\n'
         print ")"
 
+    when '%'
+      print "("
+      write ls[1], print, idt
+      print ") % ("
+      write ls[2], print, idt
+      print ")"
+
+    when 'is'
+      print "("
+      write ls[1], print, idt
+      print ") is ("
+      write ls[2], print, idt
+      print ")"
+
+    when 'isnt'
+      print "("
+      write ls[1], print, idt
+      print ") isnt ("
+      write ls[2], print, idt
+      print ")"
 
     else
       print "#{tabs idt}#{ls[0]}("
