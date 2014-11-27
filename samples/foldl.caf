@@ -1,0 +1,9 @@
+(= ls (.. 1 10))
+(= e 0)
+(= (add x y) (+ x y))
+(= (bus x y) (- y x))
+
+(console.log
+  (ls.reduce add e))
+(console.log
+  (ls.reduce bus e))

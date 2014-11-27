@@ -56,6 +56,52 @@ write = (ast, print, idt = 0) ->
       print " ... "
       write ls[2], print, 0
       print "]"
+
+    when '+'
+      print "#{tabs idt}("
+      for k in [1 ... ls.length]
+        write ls[k], print, idt + 1
+        if k < ls.length - 1
+          print '+\n'
+      print ")"
+
+    when '*'
+      print "#{tabs idt}("
+      for k in [1 ... ls.length]
+        write ls[k], print, idt + 1
+        if k < ls.length - 1
+          print '*\n'
+      print ")"
+
+    when '-'
+      len = ls.length
+      if len is 2
+        print "#{tabs idt}(-"
+        write ls[1], print, idt+1
+        print ")"
+      else
+        print "#{tabs idt}("
+        for k in [1 ... ls.length]
+          write ls[k], print, idt + 1
+          if k < ls.length - 1
+            print '-\n'
+        print ")"
+
+    when '/'
+      len = ls.length
+      if len is 2
+        print "#{tabs idt}(1/"
+        write ls[1], print, idt+1
+        print ")"
+      else
+        print "#{tabs idt}("
+        for k in [1 ... ls.length]
+          write ls[k], print, idt + 1
+          if k < ls.length - 1
+            print '/\n'
+        print ")"
+
+
     else
       print "#{tabs idt}#{ls[0]}("
       for k in [1 ... ls.length]

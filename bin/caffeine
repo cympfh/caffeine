@@ -35,6 +35,6 @@ write ast, (fragment_code) ->
 exec "/usr/bin/env coffee #{output}", (err, _1, _2) ->
   throw err if err
   console.log _1
-  console.warn _2
+  console.warn _2 if _2
 
 # vim: ft=coffee:
