@@ -80,6 +80,9 @@ for a of obj
 ## type-annotation
 
 In the future, i will implement type-inference.
+For types of *CoffeeScript*,
+I should reffer to
+[the types in the v8 engine](http://izs.me/v8-docs/classv8_1_1Primitive.html)
 
 In haskell,
 
